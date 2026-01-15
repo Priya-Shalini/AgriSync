@@ -60,13 +60,15 @@ const handleSubmit = async () => {
   setResult(null);
 
   try {
-    const response = await axios.get(
-      `${API_URL}/api/soil/recommend`,
-      {
-        params: { soilType, season },
-        
-      }
-    );
+    const token = localStorage.getItem("token");
+
+const response = await axios.get(`${API_URL}/api/soil/recommend`, {
+  params: { soilType, season },
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+
 
     setResult({
       prediction: `${soilType} Soil`,
