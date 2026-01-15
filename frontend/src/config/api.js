@@ -4,7 +4,7 @@
 
 // Backend Base URLs
 const API_CONFIG = {
-  PRODUCTION_URL: "https://agrisync-f1ut.onrender.com",
+  PRODUCTION_URL: "https://https://agrisync-backend-nvq0.onrender.com",
   DEVELOPMENT_URL: "http://localhost:5000", // 👈 backend port (NOT 8000)
 
   getApiUrl: () => {
