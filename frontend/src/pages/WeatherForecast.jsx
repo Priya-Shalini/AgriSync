@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../config/api";
+
 import {
   Cloud,
   Sun,
@@ -30,7 +32,8 @@ const WeatherForecast = () => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/weather");
+        const res = await axios.get(`${API_URL}/api/weather`);
+
 
         // 🔁 Transform DB data → UI-safe format
         const transformed = res.data.map((w, index) => ({
