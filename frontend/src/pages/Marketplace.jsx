@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config/api";
 
 const Marketplace = () => {
   const [items, setItems] = useState([]);
@@ -9,7 +10,7 @@ const Marketplace = () => {
   useEffect(() => {
     const fetchMarketplace = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/marketplace");
+        const res = await axios.get(`${API_URL}/api/marketplace`);
         setItems(res.data);
       } catch (err) {
         setError("Failed to load marketplace data");
@@ -22,15 +23,9 @@ const Marketplace = () => {
     fetchMarketplace();
   }, []);
 
-  if (loading) {
-    return <p className="p-6">Loading marketplace...</p>;
-  }
+  if (loading) return <p className="p-6">Loading marketplace...</p>;
+  if (error) return <p className="p-6 text-red-500">{error}</p>;
 
-  if (error) {
-    return <p className="p-6 text-red-500">{error}</p>;
-  }
-
-  // ✅ MAIN UI RETURN
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">🛒 Marketplace</h1>
@@ -47,9 +42,7 @@ const Marketplace = () => {
               <h3 className="font-semibold text-lg">{item.name}</h3>
               <p>Category: {item.category}</p>
               <p>Seller: {item.seller}</p>
-              <p className="font-bold text-green-600">
-                ₹{item.price}
-              </p>
+              <p className="font-bold text-green-600">₹{item.price}</p>
             </div>
           ))}
         </div>
@@ -58,6 +51,4 @@ const Marketplace = () => {
   );
 };
 
-// ✅ EXPORT AT VERY END
 export default Marketplace;
-
