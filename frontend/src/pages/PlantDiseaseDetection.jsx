@@ -392,7 +392,7 @@ const PlantDiseaseDetection = () => {
                     <div className="grid grid-cols-2 gap-4 mb-4">
                       <div className="bg-black bg-opacity-30 p-3 rounded-lg">
                         <p className="text-gray-400 text-sm">Disease</p>
-                        <p className="text-xl font-bold">{detectionResult.class}</p>
+                        <p className="text-xl font-bold">{detectionResult.disease}</p>
                       </div>
                       
                       <div className="bg-black bg-opacity-30 p-3 rounded-lg">
