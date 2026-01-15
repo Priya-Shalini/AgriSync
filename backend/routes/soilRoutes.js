@@ -7,6 +7,6 @@ const {
 } = require("../src/controllers/soilController");
 
 // 👨‍🌾 Farmer + Admin
-router.get("/recommend", protect, getSoilRecommendations);
+router.get("/recommend", getSoilRecommendations);
 
 module.exports = router;
