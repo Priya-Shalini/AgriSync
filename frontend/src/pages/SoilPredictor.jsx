@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import { API_URL } from "../config/api";
+
 
 function SoilPredictor() {
   const [file, setFile] = useState(null);
@@ -59,12 +61,10 @@ const handleSubmit = async () => {
 
   try {
     const response = await axios.get(
-      "http://localhost:5000/api/soil/recommend",
+      `${API_URL}/api/soil/recommend`,
       {
         params: { soilType, season },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
+        
       }
     );
 
@@ -72,7 +72,9 @@ const handleSubmit = async () => {
       prediction: `${soilType} Soil`,
       confidence: 90,
       notes: `Best crops for ${soilType} soil in ${season} season.`,
-      crops: response.data.recommendations.map(c => c.name),
+      crops: (response.data.recommendations || response.data.crops || []).map(
+  (c) => c.name || c
+),
       care: [
         "Maintain proper irrigation",
         "Use organic manure",
